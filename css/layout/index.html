@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>两栏布局与三栏布局</title>
+    <link rel="stylesheet" href="./2Col.css" />
+  </head>
+  <body>
+    <fieldset>
+      <legend>两栏布局：一侧定宽，一侧自动</legend>
+      <p>float + margin</p>
+      <div class="fm2">
+        <div class="left"></div>
+        <div class="right"></div>
+      </div>
+
+      <p>position + margin</p>
+      <div class="pm2">
+        <div class="left"></div>
+        <div class="right"></div>
+      </div>
+    </fieldset>
+
+    <fieldset>
+      <legend>三栏布局：两侧定宽，中间自适应</legend>
+      <p>float + margin</p>
+      <div class="fm3">
+        <div class="left"></div>
+        <div class="right"></div>
+        <div class="center"></div>
+      </div>
+
+      <p>position + margin</p>
+      <div class="pm3">
+        <div class="left"></div>
+        <div class="right"></div>
+        <div class="center"></div>
+      </div>
+
+      <p>BFC</p>
+      <div class="bfc-container">
+        <div class="left"></div>
+        <div class="right"></div>
+        <div class="center"></div>
+      </div>
+
+      <p>flex</p>
+      <div class="flex-container">
+        <div class="left"></div>
+        <div class="center"></div>
+        <div class="right"></div>
+      </div>
+
+      <p>grid</p>
+      <div class="grid-container">
+        <div class="left"></div>
+        <div class="center"></div>
+        <div class="right"></div>
+      </div>
+    </fieldset>
+
+    <fieldset>
+      <legend>两侧自动，中间定宽</legend>
+      <p>圣杯布局：float + position + margin</p>
+      <div class="fpm">
+        <div class="wrap1"><div class="left"></div></div>
+        <div class="wrap2"><div class="right"></div></div>
+        <div class="wrap3"></div>
+      </div>
+    </fieldset>
+  </body>
+</html>

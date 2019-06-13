@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>vue-demo-sale-platform</title>
+    <style></style>
+  </head>
+  <body>
+    <div id="app">
+      <span> {{ message }} </span>
+
+      <div v-if="flag">
+        我是 vif 里面的数据
+      </div>
+      <div v-else>
+        我是 velse 里面的数据
+      </div>
+
+      <ul>
+        <li v-for="(book, index) in books">{{ index }} --- {{ book.name }}</li>
+      </ul>
+
+      <ul>
+        <template v-for="book in books">
+          <li>{{ book.name }}</li>
+          <li>{{ book.author }}</li>
+        </template>
+      </ul>
+
+      <ul>
+        <li  v-for="value in obj"> {{value}}</li>
+      </ul>
+      <ul>
+        <li  v-for="(value, key, index) in obj"> {{index}} -- {{key}} : {{value}}</li>
+      </ul>
+
+      <ul>
+        <li  v-for="n in 10"> {{n}}</li>
+      </ul>
+
+     
+
+    </div>
+
+    <!-- built files will be auto injected -->
+    <script src="vue.js"></script>
+
+    <script>
+      new Vue({
+        el: "#app",
+
+        data: {
+          message: "hello world",
+          flag: false,
+
+          books: [
+            {
+              name: "vuejs",
+              author: "LH"
+            },
+            {
+              name: "nodejs",
+              author: "kk"
+            },
+            {
+              name: "js",
+              author: "DC"
+            }
+          ],
+
+          obj: {
+            name: "猪八戒",
+            age: 23,
+            gender: "男"
+          }
+        }
+      });
+    </script>
+  </body>
+</html>

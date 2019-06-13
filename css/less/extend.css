@@ -1,0 +1,28 @@
+.animation,
+#box:hover {
+  transition: width 3s ease-in;
+}
+.animation .hide,
+#box1 {
+  transform: scale(0);
+}
+#box {
+  background-color: #dad;
+  width: 100px;
+}
+#box:hover {
+  width: 400px;
+}
+#box2,
+#box3 {
+  width: 200px;
+  background-color: yellowgreen;
+}
+#box2:after,
+#box3:after {
+  content: 'Less is good!';
+}
+#box2 .box2,
+#box3 .box2 {
+  background-color: #dad;
+}

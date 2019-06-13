@@ -1,0 +1,22 @@
+{
+  "name": "jsdemo",
+  "version": "1.0.0",
+  "description": "",
+  "main": "scc.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.16.4",
+    "http": "^0.0.0",
+    "node-fetch": "^2.6.0",
+    "ws": "^6.2.1"
+  },
+  "devDependencies": {
+    "co": "^4.6.0",
+    "nginx": "0.0.0",
+    "path": "^0.12.7"
+  }
+}

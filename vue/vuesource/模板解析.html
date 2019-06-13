@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>模板解析</title>
+  </head>
+  <body>
+    <div id="test">
+      <p>{{ name }}</p>
+    </div>
+
+    <div>
+      <h2>模板</h2>
+      <p>html嵌套的js形式：指定引入和表达式</p>
+      <br />
+      <h2>流程</h2>
+      <p>1. 将el的所有子节点取出，添加到一个新建的fragment中</p>
+      <p>2. 对fragment内的所有层次子节点进行递归编译解析处理</p>
+      <p>   对表达式文本节点进行解析</p>
+      <p>   对元素节点的指令属性进行解析（事件解析，一般指令解析）</p>
+      <p>   对表达式文本节点进行解析</p>
+      <p>3. fragment中的节点转移到el中</p>
+  
+
+      <h3>{{}}解析</h3>
+      <p>正规对象匹配得到表达式字符串</p>
+      <p>从data中取出表达式对应的属性值</p>
+      <p>将属性值设置为文本节点的textContent</p>
+
+    </div>
+
+    <script src="./mvvm/compile.js"></script>
+    <script src="./mvvm/mvvm.js"></script>
+    <script src="./mvvm/observer.js"></script>
+    <script src="./mvvm/watcher.js"></script>
+
+    <script>
+      const vm = new MVVM({
+        el: '#test',
+        data: {
+          name: 'linlin'
+        }
+      });
+      console.log(vm.name); //代理读
+      vm.name = 'haha'; //代理写
+      console.log(vm._data.name);
+      console.log(vm);
+    </script>
+  </body>
+</html>

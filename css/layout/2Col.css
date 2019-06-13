@@ -1,0 +1,143 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+.left,
+.right,
+.center {
+  height: 100px;
+}
+
+.fm2 .left {
+  float: left;
+  width: 200px;
+  background-color: #eae;
+}
+.fm2 .right {
+  background-color: #aea;
+  margin-left: 210px;
+}
+
+.pm2 .left {
+  position: absolute;
+  width: 200px;
+  background-color: #eae;
+}
+.pm2 .right {
+  background-color: #aea;
+  margin-left: 210px;
+}
+
+.fm3 .left {
+  float: left;
+  width: 200px;
+  background-color: #eae;
+}
+.fm3 .right {
+  float: right;
+  width: 200px;
+  background-color: #aea;
+}
+
+.fm3 .center {
+  margin-left: 210px;
+  margin-right: 210px;
+  background-color: #ccddcc;
+}
+
+.pm3 .left {
+  position: absolute;
+  left: 0;
+  width: 200px;
+  background-color: #eae;
+}
+.pm3 .right {
+  position: absolute;
+  right: 0;
+  width: 200px;
+  background-color: #aea;
+}
+
+.pm3 .center {
+  margin-left: 210px;
+  background-color: #ccddcc;
+}
+
+.bfc-container .left {
+  float: left;
+  width: 200px;
+  background-color: #eae;
+}
+.bfc-container .right {
+  float: right;
+  width: 200px;
+  background-color: #aea;
+}
+.bfc-container .center {
+  overflow: hidden;
+  background-color: #cdc;
+}
+.flex-container {
+  display: flex;
+}
+
+.flex-container .left {
+  /* order: -1; */
+  flex: 0 1 200px;
+  background-color: #eae;
+}
+.flex-container .right {
+  flex: 0 1 200px;
+  background-color: #aea;
+}
+.flex-container .center {
+  flex: 1;
+  background-color: #cdc;
+}
+
+.grid-container {
+  display: grid;
+  grid-template: 100px/200px 1fr 200px;
+}
+
+.grid-container .left {
+  background-color: #eae;
+}
+.grid-container .right {
+  background-color: #aea;
+}
+.grid-container .center {
+  background-color: #cdc;
+}
+
+.fpm {
+  position: relative;
+}
+.wrap1 {
+  float: left;
+  width: 50%;
+}
+.wrap2 {
+  margin-left: 50%;
+  text-align: right;
+}
+
+.wrap1 .left {
+  margin-left: 0px;
+  background-color: #eae;
+}
+.wrap2 .right {
+  margin-right: 0px;
+  background-color: #aea;
+}
+.wrap3 {
+  height: 100px;
+  width: 200px;
+  background: #cdc;
+  position: absolute;
+  top: 0;
+  left: 50%;
+  margin-left: -100px;
+  /* 决定哪一个元素覆盖在其余元素的上方显示 */
+  z-index: 2;
+}

@@ -1,0 +1,115 @@
+// 无参数方法
+
+.mixin {
+  //等价于.mixin()
+  background: #aea;
+  -webkit-box-shadow: 0 1px 2px rgba(151, 151, 151, 0.58);
+  box-shadow: 0 1px 2px rgba(151, 151, 151, 0.58);
+}
+#box {
+  .mixin; //等价于.mixin()
+  margin: 30px;
+}
+
+// 默认参数（参数必须带单位）
+.border(@a: 10px, @b: 20px, @c: 30px, @color: #000) {
+  border: solid 1px @color;
+  box-shadow: @arguments;
+}
+#main {
+  .border(0px, 5px, 30px, red); //必须带单位
+  margin: 30px;
+}
+
+#wrap {
+  .border();
+  margin: 30px;
+}
+
+//方法的匹配模式
+
+/* Less */
+.triangle(top,@width:10px,@color:#000) {
+  border-color: transparent transparent @color transparent;
+}
+.triangle(right,@width:10px,@color:#000) {
+  border-color: transparent @color transparent transparent;
+}
+
+.triangle(bottom,@width:10px,@color:#000) {
+  border-color: @color transparent transparent transparent;
+}
+.triangle(left,@width:10px,@color:#000) { //匹配程度高，√
+  border-color: transparent transparent transparent @color;
+}
+.triangle(@_,@width:10px,@color:#000) { //第一个参数是变量，√
+  border-style: solid;
+  border-width: @width;
+}
+#pm {
+  .triangle(left, 30px, #999); //根据参数选择匹配的方法
+}
+
+// 方法的命名空间
+#mixin(){
+    color: yellow;
+    .d(@w:300px){
+        width: @w;
+        background-color: #ada;
+        
+        #a(@h:300px){
+            height: @h;
+            background-color: skyblue;
+        }
+    }
+}
+#box1{
+    #mixin > .d > #a(30px); // 父元素不能加 括号
+}
+#box2{
+    #mixin .d();
+}
+#box3{
+    #mixin; // 使用子方法，必须先引入 #mixin。
+    .d(40px); //
+}
+
+// 方法的条件筛选 less没有if else，但是有when
+/* Less */
+#card{
+    
+    // and 运算符 ，相当于 与运算 &&，必须条件全部符合才会执行
+    .border(@width,@color,@style) when (@width<100px) and(@color=#999){
+        border:@style @color @width;
+    }
+
+    // not 运算符，相当于 非运算 !，条件为 不符合才会执行
+    .background(@color) when not (@color>=#222){
+        background:@color;
+    }
+
+    // , 逗号分隔符：相当于 或运算 ||，只要有一个符合条件就会执行
+    .font(@size:20px) when (@size>50px) , (@size<100px){
+        font-size: @size;
+    }
+}
+#box4{
+    #card>.border(10px,#999,solid);
+    #card .background(#ada);
+    #card > .font(20px);
+}
+
+//参数数量不定，使用...
+/* Less */
+.boxShadow(...){
+    box-shadow: @arguments;
+    margin: 20px;
+}
+.textShadow(@a, ...){
+    text-shadow: @arguments
+}
+#box5{
+    .boxShadow(1px,4px,10px,red);
+    .textShadow(1px,4px,10px,yellow);
+}
+

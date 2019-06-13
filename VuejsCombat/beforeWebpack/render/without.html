@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>动态组件</title>
+  </head>
+  <body>
+    <div id="app">
+      <anchor :level = '2' title = '特性'>特性</anchor>
+    </div>
+
+    <script src="../vue.js"></script>
+
+    <script type="text/x-template" id="anchor">
+        <div>
+                <h1 v-if="level === 1">
+                    <a href="'#'+title">
+                        <slot></slot>
+                    </a>
+                </h1>
+                <h2 v-if="level === 2">
+                    <a href="'#'+title">
+                        <slot></slot>
+                    </a>
+                </h2>
+                <h3 v-if="level === 3">
+                    <a href="'#'+title">
+                        <slot></slot>
+                    </a>
+                </h3>
+            </div>
+    </script>
+
+    <script>
+      Vue.component("anchor", {
+        props: ["level", "title"],
+        template: "#anchor"
+      });
+
+      var app1 = new Vue({
+        el: "#app"
+      });
+    </script>
+  </body>
+</html>

@@ -1,0 +1,68 @@
+/* 单行文本 */
+.box1 {
+  width: 200px;
+  height: 100px;
+  background-color: bisque;
+  position: relative;
+}
+.box1 > p {
+  background-color: aqua;
+  height: 50px;
+  width: 100px;
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  margin: auto;
+}
+
+/* 多行文本 */
+.box2 {
+  width: 200px;
+  height: 200px;
+  background-color: bisque;
+  position: relative;
+}
+.box2 > p {
+  background-color: aqua;
+  height: 100px;
+  width: 100px;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  margin-left: -50px;
+  margin-top: -50px;
+}
+
+/* 块级元素 */
+.box3 {
+  width: 200px;
+  height: 200px;
+  background-color: bisque;
+  position: relative;
+}
+.box3 > p {
+  background-color: aqua;
+  height: 100px;
+  width: 100px;
+  position: absolute;
+  left: 50%; /* 定位父级的50% */
+  top: 50%;
+  transform: translate(-50%, -50%); /*自己的50% */
+}
+
+.box4 {
+  width: 200px;
+  height: 100px;
+  background-color: bisque;
+  display: table-cell;
+  text-align: center;
+  vertical-align: middle;
+}
+.box4 > p {
+  height: 50px;
+  width: auto;
+  background-color: lawngreen;
+
+}

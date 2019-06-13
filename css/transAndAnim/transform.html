@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>变形-transform</title>
+    <style>
+        div{
+            width: 150px;
+            height: 150px;
+            background-color: #ada;
+            margin: 10px;
+            display: inline-block
+        }
+        div>div{
+            margin: 0;
+            width: 100px;
+            height: 100px;
+            background-color: #eae;
+        }
+        #box1{
+            transform: translate(15px, 25px) 
+        }
+        #box2{
+            transform: scale(0.5, 0.5)
+        }
+        #box3{
+            transform: rotate(30deg)
+        }
+        #box4{
+            transform: skew(20deg, 10deg) 
+        }
+        #box5{
+            transform-origin: 50px 50px;
+        }
+
+    </style>
+</head>
+<body>
+    <div>
+        <div>default</div>
+    </div>
+    <div>
+        <div id="box1">translate</div>
+    </div>
+    <div>
+        <div id="box2">scale</div>
+    </div>
+    <div>
+        <div id="box3">rotate</div>
+    </div>
+    <div>
+        <div id="box4">skew</div>
+    </div>
+    <div>
+        <div id="box5">transform-origin</div>
+    </div>
+</body>
+</html>

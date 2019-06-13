@@ -1,0 +1,12 @@
+#main {
+  background-color: #ede;
+}
+#main::after {
+  content: 'wao';
+}
+#main .active {
+  color: skyblue;
+}
+#main_content {
+  margin: 20px;
+}

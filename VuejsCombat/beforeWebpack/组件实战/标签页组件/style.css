@@ -1,0 +1,54 @@
+[v-cloak]{
+    display:none;
+}
+/* *{
+    padding: 0px;
+    margin: 0px;
+}     */
+
+.tabs{
+    font-size: 14px;
+    color: #657180;
+}
+/* 第一个tabs-bar起作用。其同class子元素没有效果 */
+.tabs-bar:after{
+    content:"";
+    display: block;
+    width: 100px;
+    height: 1px;
+    /* background-color: #d7dde4; */
+    background-color: #fff;
+    margin-top: -1px;
+}
+.tabs-bar{
+    display: inline-block;
+    padding: 4px 16px;
+    margin-right: 6px;
+    /* background-color: #fff;
+    border:1px solid #d7dde4; */
+    background-color: #fff;
+    border:1px solid #d7dde4;
+    cursor: pointer;
+    position: relative;
+
+   
+}
+.tabs-bar-active{
+color: #3399ff;
+border-top: 1px solid #3399ff;
+/* border-bottom: 1px solid #fff; */
+border-bottom: 1px solid #d7dde4;
+}
+.tabs-bar-active:before{
+    content: "";
+    display: block;
+    height: 1px;
+    background-color: #3399ff;
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    right: 0px;
+}
+.tabs-content{
+    padding: 8px 0;
+}

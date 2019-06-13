@@ -1,0 +1,10 @@
+/* div {
+    background-color: coral
+} */
+.csl~p{
+    background-color: yellowgreen
+}
+
+.csl+p{
+    background-color: yellow
+}

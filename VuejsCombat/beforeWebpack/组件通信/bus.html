@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>v-el和v-ref</title>
+    <!-- <link rel="stylesheet" type="text/css" href="style.css" /> -->
+  </head>
+  <body>
+    <div id="app" v-cloak>
+      {{message}}
+      <my-component></my-component>
+    </div>
+
+    <script src="../vue.js"></script>
+
+    <script>
+      var bus = new Vue();
+
+      Vue.component("my-component", {
+        template: "<button  @click = 'handleEvent'>传递数据</button>",
+        data: function() {
+          return {
+            message: "hello refs"
+          };
+        },
+        methods: {
+          handleEvent: function() {
+            bus.$emit('on-message','来自子组件的信息')
+          }
+        }
+      });
+
+      var app = new Vue({
+        el: "#app",
+        data: {
+          message: "初始数据"
+        },
+       mounted() {
+           var _this = this;
+           bus.$on('on-message',function(msg){
+               _this.message = msg;
+           })
+       },
+      });
+    </script>
+  </body>
+</html>

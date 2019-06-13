@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <div>我是localhost:4000/b.html的内容</div>
+  <script>
+    window.onmessage = function (e) {
+      console.log("来自3000的跨域数据: ",e.data);
+      console.log(e);
+      e.source.postMessage('我是4000返回的数据',e.origin)
+    }
+  </script>
+</body>
+</html>

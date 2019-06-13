@@ -1,0 +1,89 @@
+<html>
+  <head>
+    <title>指令章节练习</title>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="style.css" type="text/css" />
+  </head>
+  <body>
+    <div id="app" v-cloak>
+      <!-- 拼音适合更新data的方式 -->
+      {{ input }}
+      <br>
+      <input @input="input = $event.target.value" :value="input" />
+      <br>
+      <br>
+      <!-- 我是vue实例的data数据hello, 我会随着下面的input一起改变 -->
+      <!-- 拼音时候不更新data的方式 -->
+      {{ hello }}
+      <br>
+      <!-- v-once -->
+      <div v-once>此处内容不随下面的input变化： {{ hello }}</div>
+      <br>
+
+      我会改变vue实例中的data数据<input v-model="hello" type="text" />
+      <br>
+      <br>
+
+<!-- 测试浏览器是否支持template标签 -->
+<template>
+  <p> 不支持template标签 </p>
+</template>
+<br>
+      <!-- v-if -->
+      <template v-if="state">
+        <p>文本</p>
+        <p>文本</p>
+        <p>文本</p>
+      </template>
+
+      <!-- v-for用于template -->
+      <template v-for="(key, value,index) in user">
+        <li>{{ key }} -- {{ value }} -- {{ index }}</li>
+      </template>
+
+      <!-- 不改变原数组情况下排序 -->
+      <template v-for="(item,index) in sortedBooks">
+        <li>{{ item }} -- {{ index }}</li>
+      </template>
+
+      <br>
+      <div>
+        <input type="radio" v-model='picked' :value='value' id='radioBtn' @click='picked=!picked'>
+        <label for='radioBtn'>单选按钮</label>
+        <br>
+        {{picked}}
+        {{value}}
+      </div>
+    </div>
+
+    <script src="../vue.js"></script>
+    <script>
+
+      var template = document.querySelector('template')
+      console.log(window.getComputedStyle(template).display)
+
+
+      var app = new Vue({
+        el: "#app",
+        data: {
+          hello: "拼音时候不更新data的方式",
+          input: "拼音时候更新data的方式",
+          state: 1,
+          user: {
+            name: "wym",
+            age: 22,
+            gender: "femal"
+          },
+          books: [{ name: "java" }, { name: "css" }],
+          picked: false,
+          value: 123,
+        },
+        computed: {
+          sortedBooks() {
+            return this.books.sort((v1, v2) => v1.name.length - v2.name.length);
+          }
+        }
+      });
+    </script>
+  </body>
+</html>

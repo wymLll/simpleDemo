@@ -1,0 +1,62 @@
+<!-- 数据验证 -->
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>组件示例</title>
+  </head>
+  <body>
+    <div id="app">
+      myapp
+
+      <input type="text" v-model="propB">
+
+      <!-- 极其重要：prop-b而非propB -->
+      <my-component2 :prop-b="propB"></my-component2>
+    </div>
+
+    <script src="../vue.js"></script>
+    <!-- <script src="index.js"></script> -->
+
+    <script>
+      // 父元素初始值保存，自己作用域使用
+      Vue.component("my-component2", {
+        props: {
+          propA: Number,
+          propB: [String, Number],
+          propC: {
+            type: Boolean,
+            default: true
+          },
+          propD: {
+            type: Number,
+            requirde: true
+          },
+          propE: {
+            type: Array,
+            default: function() {
+              return [];
+            }
+          },
+          propF: {
+            validator: function(value) {
+              return value > 10;
+            }
+          }
+        },
+
+        template: "<div>组件中的数据：{{propB}} </div>"
+      });
+
+      var app = new Vue({
+        el: "#app",
+        data: {
+          propB: 12
+        }
+      });
+    </script>
+  </body>
+</html>
+
+

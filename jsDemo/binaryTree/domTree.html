@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>dom dfs-bfs</title>
+  </head>
+  <body>
+    <div>
+      <p>213</p>
+      <p>
+        <span>112</span>
+        <a href="#">no link</a>
+      </p>
+      <span>test</span>
+      <div>
+        <a href="#">no link too</a>
+      </div>
+      <a href="#">no link too too</a>
+    </div>
+
+    <script>
+      let res = [document.body];
+      const dfsRecursive = function(node) {
+        if (!node) return res;
+        //因为node.children是类数组
+        [].forEach.call(node.children, child => {
+          res.push(child);
+          dfsRecursive(child);
+        });
+        return res;
+      };
+      console.log(dfsRecursive(document.body));
+
+      const dfs = function(root) {
+        let res = [];
+        if (!root) return res;
+        let stack = [root];
+        while (stack.length) {
+          node = stack.pop();
+          res.push(node);
+          for (let i = node.children.length - 1; i >= 0; i--) {
+            stack.push(node.children[i]);
+          }
+        }
+        return res;
+      };
+      console.log(dfs(document.body));
+
+      
+      const bfs = function(root) {
+        let res = [];
+        let queue = [root];
+        let index = 0;
+        while (index < queue.length) {
+          let node = queue[index++];
+          res.push(node);
+          [].forEach.call(node.children, child => {
+            queue.push(child);
+          });
+        }
+        return res;
+      };
+      console.log(bfs(document.body));
+
+      res = [];
+      let queue = [document.body];
+      const bfsRecursive = function(index = 0) {
+        if (queue[index]) {
+          let node = queue[index++];
+          res.push(node);
+          [].forEach.call(node.children, child => queue.push(child));
+          bfsRecursive(index);
+        }
+      };
+      bfsRecursive();
+      console.log(res);
+    </script>
+  </body>
+</html>

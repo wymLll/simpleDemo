@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>内敛模板</title>
+    <!-- <link rel="stylesheet" type="text/css" href="style.css" /> -->
+  </head>
+  <body>
+    <div id="app" v-cloak>
+      <p>{{ message }}</p>
+      <my-component inline-template>
+        <div>
+          <h2>在父组件中声明的模板</h2>
+          <p>{{ message }}</p>
+          <!-- message is not defined -->
+          <p>{{ msg }}</p>
+        </div>
+      </my-component>
+    </div>
+
+    <script src="../vue.js"></script>
+
+    <script>
+      Vue.component("my-component", {
+        data: function() {
+          return {
+            msg: "子组件声明的数据"
+          };
+        }
+      });
+
+      var app = new Vue({
+        el: "#app",
+        data: {
+          message: "父组件声明的数据"
+        }
+      });
+    </script>
+  </body>
+</html>

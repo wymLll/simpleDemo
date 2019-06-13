@@ -1,0 +1,68 @@
+// 常规变量
+@color: #000;
+@bgColor: skyblue;
+
+// 选择器变量
+@mySelector: #wrap;
+@box: box;
+
+@{mySelector} {
+  //#wrap
+  background-color: @bgColor;
+}
+.@{box} {
+  //.box
+  color: @color;
+}
+#@{box} {
+  //#box
+  font-weight: bold;
+}
+
+// 属性变量
+@borderStyle: border-style;
+@Solid: solid;
+@{mySelector} {
+  border: 2px;
+  @{borderStyle}: @Solid;
+}
+
+//url变量
+@bgImg: '../imgs';
+body {
+  background: url('@{bgImg}/1.jpg');
+}
+
+//变量声明
+@background: {
+  background-color: red;
+};
+#main {
+  @background();
+}
+
+//变量运算
+@width: 200px;
+@color: #999;
+#operation {
+  width: @width - 20;
+  height: @width - 30 * 5;
+  margin: (@width - 20)/18;
+  color: @color*2; //#ffffff
+  background-color: @color + #111; //#aaaaaa
+}
+
+//变量作用域
+@var: @a;
+@a: 100%;
+#wrap {
+  width: @var; //20%
+  @a: 20%;
+}
+
+//变量定义变量
+@fnord:  "，最难将息";
+@var: "fnord";
+#operation::after{
+  content: @@var; //将@var替换为其值 content:@fnord;
+}

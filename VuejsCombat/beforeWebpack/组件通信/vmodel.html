@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>v-model</title>
+    <!-- <link rel="stylesheet" type="text/css" href="style.css" /> -->
+  </head>
+  <body>
+    <div id="app" v-cloak>
+      {{ total }}
+ 
+      <my-component v-model="total"></my-component>
+      <button  @click = 'handleEvent'>-1</button>
+    </div>
+
+    <script src="../vue.js"></script>
+
+    <script>
+    
+      Vue.component("my-component", {
+        template: "<input :value='value' @input='updateVal'>",
+       
+        methods: {
+            updateVal: function(event) {
+        
+            this.$emit("input", event.target.value);
+          }
+          
+        }
+      });
+
+      var app = new Vue({
+        el: "#app",
+        data: {
+          total: 0
+        },
+       methods:{
+        handleEvent: function() {
+              this.total--;
+        
+            this.$emit("input", this.total);
+          }
+       }
+      });
+    </script>
+  </body>
+</html>

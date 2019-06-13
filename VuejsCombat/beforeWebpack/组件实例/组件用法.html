@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>组件示例</title>
+  </head>
+  <body>
+    <div id="app">
+      myapp
+
+      <my-component></my-component>
+      <my-component></my-component>
+      <my-component></my-component>
+
+      <!-- table限制情况 -->
+      <!-- <table>
+        <tbody is="my-component"></tbody>
+        最后上面这句表达式为：
+        <div>这里是组件内的内容</div>
+      </table> -->
+    </div>
+
+    <script src="../vue.js"></script>
+    <!-- <script src="index.js"></script> -->
+
+    <script>
+      // 组件data返回引用的外部对象，该对象为共享对象。如data
+      // 返回一个新对象即可解决问题
+      var data = {
+        counter: 0
+      };
+      Vue.component("my-component", {
+        template: "<button @click='counter++'> {{counter}} </button>",
+        data: function() {
+          // return data;
+          return {counter:0};
+        }
+      });
+      var app = new Vue({
+        el: "#app"
+      });
+
+
+      // 组件中的data必须使用函数return返回
+      // Vue.component("my-component", {
+      //   template: "<div>{{message}}</div>",
+      //   data: function() {
+      //     return {
+      //       message: "组件内容"
+      //     };
+      //   }
+      // });
+
+      // var app = new Vue({
+      //   el: "#app"
+      // });
+
+
+      // 模板限制情况：table, ul, ol, select
+      // 解决方法：使用is属性挂载组件，组件模板替代整个挂载元素
+      // Vue.component("my-component", {
+      //   template: "<div>这里是组件内的内容</div>"
+      // });
+      // var app = new Vue({
+      //   el: "#app"
+      // });
+
+
+      // 全局组件实例
+      // Vue.component("my-component", {
+      //   template: "<div>这里是组件内的内容</div>"
+      // });
+      // var app = new Vue({
+      //   el: "#app"
+      // });
+
+
+      // 局部组件实例
+      // var Child = {
+      //   template:'<div>局部注册组件的内容</div>'
+      // }
+      // var app = new Vue({
+      //   el: "#app",
+      //   components:{
+      //     'my-component':Child
+      //   }
+      // });
+    </script>
+  </body>
+</html>

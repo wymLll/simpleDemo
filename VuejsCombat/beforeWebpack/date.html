@@ -1,0 +1,161 @@
+<html>
+  <head>
+      <title>date-filter-vBind-vIf-vHtml-vOn</title>
+  </head>
+
+<tbody>
+
+
+  <div id="app">
+    {{ date | formatDate }}
+    <br />
+    <input type="text" name="who" value="it's me" />
+    <br />
+    <span v-if="show"> 我是v-if </span>
+  <!-- 传递的参数：data中的，基本类型？ 若是自己传递event需要使用  $event  -->
+    <button @click.once="handleVif('i')">遍历arr</button>
+    <!-- <button @click = "if(i<arr.length) show = arr[i++] ">遍历arr</button> -->
+
+    <br>
+    <!-- 计算属性依赖 -->
+    {{ reversText }}
+    <!-- {{textLength}} -->
+
+
+    <!-- v-bind -->
+    <!-- 对象 -->
+    <div class="basic" :class="{'active': isActive}"> obj </div>
+    <!-- isActie 可以来自data，methods，computed -->
+
+    <!-- 数组 -->
+    <div class="basic" :class="[activeCls, errorCls]"> arr </div>
+    <div class="basic" :class="[isActive ?  activeCls : '', errorCls]"> arrExpression </div>
+
+    <!-- 数组对象 -->
+    <div class="basic" :class="[{'active': isActive}, errorCls]" > arrObj </div>
+
+       <!-- 组件使用v-bind -->
+
+    <mycom :class = '[activeCls]'  :style="styles"></myCom>
+
+    <!-- :style 我是最好用的！！！-->
+    <div :style="styles">我是通过data绑定的style样式i</div>
+ 
+  </div>
+
+  <div id="app1"></div>
+
+
+<script src="vue.js"></script>
+<script>
+ 
+  // 月，日小于0时前面补0
+  var pagDate = function(value) {
+    return value < 10 ? "0" + value : value;
+  };
+
+  var delArr = function(arr) {
+    var len;
+  };
+  var app1 = new Vue({
+    el: "#app1",
+    data: {
+      text: "123,456"
+    }
+  });
+  
+  
+  Vue.component('mycom', {
+        template: '<div class="basic" >父层<div class="basic" >子层</div></div>'
+    })
+  
+  var app2 = new Vue({
+    el: "#app",
+    data: {
+      date: new Date(),
+      show: true,
+      arr: [false, false, true, false, false, true],
+      i: 0,
+      isActive: true,
+      activeCls: 'active',
+      errorCls: 'error',
+      styles:{
+          color: 'red',
+          font: 2+'px serif'
+      }
+    },
+    methods: {
+      handleVif(k) {
+
+        console.log("handleVif: ",event.target);
+        console.log("handleVif: ",k);
+        if (this.i < this.arr.length) this.show = this.arr[this.i++];
+      }
+    },
+    computed: {
+
+        // 本实例中的data数据引用
+      arrLength: function() {
+        return this.arr.length;
+      },
+
+      reversText: function() {
+        //   本实例中的另一个计算属性的引用
+        console.log(
+          app1.text
+            .split("")
+            .reverse()
+            .join(""),
+          this.arrLength
+        );
+
+        // 另外一个实例中的data数据的引用
+        return app1.text
+          .split(",")
+          .reverse()
+          .join(",");
+      }
+    },
+    filters: {
+      formatDate(value) {
+        var date = new Date(value);
+        var year = date.getFullYear();
+        var month = pagDate(date.getMonth() + 1);
+        var day = pagDate(date.getDate());
+        var hours = pagDate(date.getHours());
+        var minutes = pagDate(date.getMinutes());
+        var seconds = pagDate(date.getSeconds());
+
+        console.log(typeof year);
+
+        return (
+          year +
+          "-" +
+          month +
+          "-" +
+          day +
+          "-" +
+          hours +
+          "-" +
+          minutes +
+          "-" +
+          seconds
+        );
+      }
+    },
+    mounted() {
+      var _this = this;
+      this.timer = setTimeout(function() {
+        _this.date = new Date();
+      }, 4000);
+    },
+    beforeDestroy() {
+      if (this.timer) {
+        console.log(this.timer);
+        clearTimeout(this.timer);
+      }
+    }
+  });
+</script>
+</tbody>
+</html>

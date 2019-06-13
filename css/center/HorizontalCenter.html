@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>水平居中</title>
+    <style>
+      .box1 {
+        height: 100px;
+        width: 200px;
+        background-color: yellowgreen;
+        /* 行内元素对齐 */
+        text-align: center;
+      }
+
+      .box2 {
+        height: 100px;
+        width: 200px;
+        background-color: yellowgreen;
+        text-align: center;
+        /* flex布局方式
+          display: flex;
+          justify-content: center;
+          align-items: flex-start */
+      }
+      .box2 > div {
+        background-color: darkorange;
+        display: inline-block;
+      }
+
+      .clearfix::before {
+        content: '';
+        display: table;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="box1">
+      行内元素水平居中: 只需要给父元素设置
+      <b>text-align: center</b>
+    </div>
+    <br />
+    <div class="box2 clearfix">
+      <div>块元素水平居中</div>
+    </div>
+  </body>
+</html>

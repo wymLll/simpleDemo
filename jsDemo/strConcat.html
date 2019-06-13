@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+    
+  </head>
+  <body>
+      <a href="https://www.freepik.com/free-photos-vectors/mockup">Mockup psd created by freepik - www.freepik.com</a>
+    <script>
+      function log(...args) {
+        console.log(...args);
+      }
+
+      function timeOut(times, name, func) {
+        console.time(name);
+        let i = 0;
+        while (i < times) {
+          func();
+          i++;
+        }
+        console.timeEnd(name);
+      }
+
+      const a = 'a';
+      const b = 'b';
+
+      const str1 = () => a + b;
+      const str2 = () => a.concat(b);
+      const str3 = () => [a, b].join();
+      const str4 = () => `${a}${b}`;
+
+      const link = times => {
+        log(`------- ${times} -------`);
+        timeOut(times, 'string + 连接', str1);
+        timeOut(times, 'string concat 方法', str2);
+        timeOut(times, 'array join 连接', str3);
+        timeOut(times, '模板字符串', str4);
+      };
+
+      link(1);
+      link(100);
+      link(10000);
+      link(1000000);
+    </script>
+  </body>
+</html>

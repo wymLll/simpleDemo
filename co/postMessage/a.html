@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <div>
+    <p>可以实现跨文本档、多窗口、跨域消息传递。</p>
+  </div>
+    <div>我是localhost:3000/a.html的内容</div>
+  <iframe src="http://localhost:4000/b.html" frameborder="0" id="frame" onload="load()"></iframe>
+  <script>
+    function load() {
+      let frame = document.getElementById('frame');
+      frame.contentWindow.postMessage('postMessage跨域3000到4000的数据','http://localhost:4000');
+      window.onmessage = function (e) {
+        console.log("4000返回数据: ",e.data);
+      }
+    }
+  
+  </script>
+</body>
+</html>

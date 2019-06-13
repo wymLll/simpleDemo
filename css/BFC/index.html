@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>BFC</title>
+    <style>
+      .box {
+        background-color: rgb(224, 206, 247);
+        border: 5px solid rebeccapurple;
+        /* 非visible；父元素可以包含浮动子元素 */
+        /* overflow: hidden; */
+        display: inline-block;
+      }
+      .float {
+        float: left;
+        width: 200px;
+        height: 150px;
+        background-color: white;
+        border: 1px solid black;
+        padding: 10px;
+      }
+      .blue,
+      .red-inner {
+        height: 50px;
+        margin: 10px 0;
+        background-color: #afa;
+      }
+
+      .blue {
+        background: blue;
+      }
+
+      .red-outer {
+        /* 解决外边距塌陷 */
+        overflow: hidden;
+        background: red;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- bfc：是的父元素可以包含浮动子元素 -->
+    <!-- 解决高度塌陷 -->
+    <div class="box">
+      <div class="float">I am a floated box!</div>
+      <p>I am content inside the container.</p>
+    </div>
+    <p>I am content outside the container</p>
+
+    <!-- 解决外边距塌陷 -->
+    <div class="blue"></div>
+    <div class="red-outer">
+      <div class="red-inner">red inner</div>
+    </div>
+
+    <p>开启bfc可解决高度塌陷以及外边距塌陷。以下四个方法都可以开启：</p>
+    <ul>
+      <li>开启float</li>
+      <li>开启绝对定位</li>
+      <li>display:inline-block</li>
+      <li>overflow:非visible</li>
+    </ul>
+
+    <p>前两种开启，导致父元素的宽度不见，下边元素上移</p>
+    <p>第三种，导致父元素宽度不见</p>
+    <p>推荐第四种</p>
+  </body>
+</html>

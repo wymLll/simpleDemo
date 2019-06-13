@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>过渡-transition</title>
+
+    <style>
+      div {
+        width: 800px;
+        display: inline-block;
+        vertical-align: top;
+        margin: 20px 0;
+      }
+      img {
+        height: 100px;
+        width: 100px;
+      }
+
+      #img1:hover {
+        height: 200px;
+        width: 200px;
+      }
+
+      #img2:hover {
+        height: 200px;
+        width: 200px;
+        transition: 1s;
+      }
+      #img3:hover {
+        height: 200px;
+        width: 200px;
+
+        /* heigth表示此效果只用于height */
+        transition: 2s height;
+      }
+      #img4:hover {
+        height: 200px;
+        width: 200px;
+
+        /* 1s 2s width 其中delay为第二个时间*/
+        transition: 1s height, 1s 2s width;
+      }
+      #img5:hover {
+        height: 200px;
+        width: 200px;
+        transition: 1s ease;
+      }
+      #img6:hover {
+        height: 200px;
+        width: 200px;
+        transition: 2s linear;
+      }
+      #img7:hover {
+        height: 200px;
+        width: 200px;
+        transition: 2s ease-in;
+      }
+      #img8:hover {
+        height: 200px;
+        width: 200px;
+        transition: 2s ease-out;
+      }
+      #img9:hover {
+        height: 200px;
+        width: 200px;
+        transition: 1s ease-in-out;
+      }
+      #img10:hover {
+        height: 200px;
+        width: 200px;
+        /* cubic-bezier函数：自定义速度模式 */
+        transition: 2s cubic-bezier(0.83, 0.97, 0.05, 1.44);
+      }
+      .para {
+        width: auto;
+        padding: 0 50px 0 0;
+      }
+    </style>
+  </head>
+  <body>
+    <div>
+      <p>
+        当鼠标放置于缩略图之上，缩略图会迅速变大。注意，缩略图的变大是瞬间实现的。
+      </p>
+      <img id="img1" src="1.jpg" alt="yezi" />
+    </div>
+    <div>
+      <p>transition的作用在于，指定状态变化所需要的时间。transition-duration</p>
+      <img id="img2" src="1.jpg" alt="yezi" />
+    </div>
+    <div>
+      <p>transition-property: height</p>
+      <img id="img3" src="1.jpg" alt="yezi" />
+    </div>
+    <div>
+      <p>
+        transition-delay：让height先发生变化，等结束以后，再让width发生变化，也就是延迟（delay）2秒。
+      </p>
+      <p>
+        delay的真正意义在于，它指定了动画发生的顺序，使得多个不同的transition可以连在一起，形成复杂效果。
+      </p>
+      <img id="img4" src="1.jpg" alt="yezi" />
+    </div>
+    <div>
+      <p>transition-timing-function：transition的状态变化速度</p>
+      <div class="para">
+        <p>ease: 逐渐放慢</p>
+        <img id="img5" src="1.jpg" alt="yezi" />
+      </div>
+      <div class="para">
+        <p>liner：匀速</p>
+        <img id="img6" src="1.jpg" alt="yezi" />
+      </div>
+
+      <div class="para">
+        <p>ease-in：加速</p>
+        <img id="img7" src="1.jpg" alt="yezi" />
+      </div>
+
+      <div class="para">
+        <p>ease-out：减速</p>
+        <img id="img8" src="1.jpg" alt="yezi" />
+      </div>
+      <div class="para">
+        <p>ease-in-out</p>
+        <img id="img9" src="1.jpg" alt="yezi" />
+      </div>
+      <div class="para">
+        <p>cubic-bezier</p>
+        <img id="img10" src="1.jpg" alt="yezi" />
+      </div>
+    </div>
+    <div>
+      <h2>transition局限</h2>
+      <ol>
+        <li>transition需要事件触发，所以没法在网页加载时自动发生。</li>
+        <li>transition是一次性的，不能重复发生，除非一再触发。</li>
+        <li>
+          transition只能定义开始状态和结束状态，不能定义中间状态，也就是说只有两个状态。
+        </li>
+        <li>一条transition规则，只能定义一个属性的变化，不能涉及多个属性。</li>
+      </ol>
+      <br>
+      <h2>transition使用注意</h2>
+      <ol>
+          <li>大浏览器（包括IE 10）都已经支持无前缀的transition</li>
+          <li>不是所有的CSS属性都支持transition</li>
+          <li>transition需要明确知道，开始状态和结束状态的具体数值，才能计算出中间状态</li>
+      </ol>
+    </div>
+  </body>
+</html>

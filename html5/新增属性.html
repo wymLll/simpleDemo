@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>h5新增属性</title>
+  </head>
+  <body>
+    <form>
+      <input type="color" />
+      <input type="range" min="1" max="10" />
+      <input type="tel" />
+      <input type="search" placeholder="搜索字段的外观与常规的文本字段无异" />
+      <input type="url" placeholder="必须得有http://x" />
+      date: <input type="date" />
+      <input type="month" />
+      <input type="week" />
+      <input type="time" />
+      datetime-local: <input type="datetime-local" />
+      <!-- image 输入类型将图像定义为提交按钮。 -->
+      <p>
+        <input
+          type="image"
+          src="images/semStru.png"
+          width="30px"
+          height="21px"
+        />
+      </p>
+
+      <p>firfox不支持month, time类型input</p>
+      <label><input type="number" min="1" max="12" step="1" />月</label>
+      <label><input type="number" min="0" max="23" step="1" />时</label>
+      <label><input type="number" min="0" max="59" />分</label>
+      <input
+        type="password"
+        pattern="[A-z]{3}"
+        placeholder="密码：三位英文字符"
+      />
+      <input type="file" name="img" multiple="multiple" />
+
+      <label id="label">
+        邮编： <input id="txt_zip" maxlength="6" /><small>请输入6位数字</small>
+      </label>
+      <input type="button" value="设置默认值" onclick="setValue()" />
+    </form>
+
+    <br />
+    <form>
+      <fieldset name="userInfo">
+        <legend>
+          <label
+            ><input
+              type="checkbox"
+              checked
+              name="enableUserInfo"
+              onchange="form.userInfo.disabled=!checked"
+            />启用用户信息</label
+          >
+        </legend>
+        <p>
+          <label>姓名:<input name="userName" required/></label>
+        </p>
+        <fieldset name="personalInfo">
+          <legend>
+            <label
+              ><input
+                type="checkbox"
+                checked
+                name="enablePersonalInfo"
+                onchange="form.personalInfo.disabled=!checked"
+              />个人信息</label
+            >
+          </legend>
+          <p>
+            <label>生日:<input name="birthday" required/></label>
+          </p>
+        </fieldset>
+        <fieldset name="companyInfo">
+          <legend>
+            <label
+              ><input
+                type="checkbox"
+                checked
+                name="enableCompanyInfo"
+                onchange="form.companyInfo.disabled=!checked"
+              />公司信息</label
+            >
+          </legend>
+          <p>
+            <label>公司名称:<input name="companyName" required/></label>
+          </p>
+        </fieldset>
+      </fieldset>
+    </form>
+
+    <br />
+    <form>
+      <input type="text" name="text" id="test" />
+      <input
+        type="button"
+        value="查看选中文本方向"
+        onclick="alertSelectionDirection()"
+      />
+    </form>
+
+    <form>
+      <input type="checkbox" checked />
+      <input type="checkbox" indeterminate />只写一个indeterminate不起作用
+      <input type="checkbox" id="test" />
+      <input type="checkbox" />
+    </form>
+
+    <script>
+      function setValue() {
+        var label = document.getElementById('label');
+        // 通过label的control属性控制其内的input元素
+        var textbox = label.control;
+        textbox.value = '718308';
+      }
+
+      function alertSelectionDirection() {
+        var testInput = document.getElementById('test');
+        var direction = testInput.selectionDirection;
+        alert(direction);
+      }
+
+      document.getElementById('test').indeterminate = true;
+    </script>
+  </body>
+</html>

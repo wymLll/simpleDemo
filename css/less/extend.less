@@ -1,0 +1,33 @@
+.animation {
+  transition: width 3s ease-in;
+  .hide {
+    transform: scale(0);
+  }
+}
+#box {
+  background-color: #dad;
+  width: 100px;
+}
+#box:hover {
+  width: 400px;
+  &:extend(.animation);
+}
+
+#box1 {
+  &:extend(.animation .hide);
+}
+//all 全局搜索替换
+#box2 {
+  width: 200px;
+  background-color: yellowgreen;
+}
+#box2 {
+  &:after {
+    content: 'Less is good!';
+  }
+  .box2 {
+    background-color: #dad;
+  }
+}
+#box3 :extend(#box2 all) {
+}

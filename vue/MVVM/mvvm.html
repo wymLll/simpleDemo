@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Two-way data-binding</title>
+  </head>
+  <body>
+    <div id="app">
+      <input type="text" v-model="text" />
+      {{ text }}
+    </div>
+
+    <script>
+      // 绑定监听，本文中obj就是data
+      function observe(vm, obj) {
+        Object.keys(obj).forEach(key => {
+          defineReactive(vm, key, obj[key]);
+        });
+      }
+
+      function defineReactive(vm, key, val) {
+        var dep = new Dep();
+        Object.defineProperty(vm, key, {
+          get: function() {
+            //收集数据依赖
+            if (Dep.target) dep.addSub(Dep.target);
+            return val;
+          },
+          set: function(newVal) {
+            if (newVal === val) return;
+            val = newVal;
+            // data数据更新吼通知订阅器
+            dep.notify();
+          }
+        });
+      }
+
+      // 订阅器
+      function Dep() {
+        this.subs = [];
+      }
+      Dep.prototype = {
+        addSub: function(sub) {
+          this.subs.push(sub);
+        },
+        notify: function() {
+          // data更新后触发；通知订阅者分别更新自己的数据
+          this.subs.forEach(function(sub) {
+            sub.update();
+          });
+        }
+      };
+
+      function nodeToFragment(vm, node) {
+        console.log(vm);
+        console.log(node);
+        var frag = document.createDocumentFragment();
+        var child;
+        while ((child = node.firstChild)) {
+          // 编译所有el的子节点
+          compile(vm, child);
+          frag.appendChild(child);
+        }
+        return frag;
+      }
+
+      function compile(vm, node) {
+        var reg = /\{\{(.*)\}\}/;
+        if (node.nodeType === 1) {
+          var attr = node.attributes;
+
+          // 解析属性
+          for (var i = 0; i < attr.length; i++) {
+            if (attr[i].nodeName == 'v-model') {
+              // v-model绑定的属性名
+              var name = attr[i].nodeValue;
+              // 给data复制，触发set方法
+              node.addEventListener('input', function(e) {
+                vm[name] = e.target.value;
+              });
+              // 将data的值赋给node
+              node.value = vm[name];
+              node.removeAttribute('v-model');
+            }
+          }
+
+          // node: input; name: text
+          new Watcher(vm, node, name, 'input');
+        }
+        if (node.nodeType === 3) {
+          if (reg.test(node.nodeValue)) {
+            var name = RegExp.$1;
+            name = name.trim();
+            new Watcher(vm, node, name, 'text');
+          }
+        }
+      }
+
+      /**
+       * 作用：自身实例化时，往订阅器dep里面添加自己；
+       *       自身必须有update方法；
+       *       属性变动dep.notice通知的时候，调用update方法，并触发compile中绑定的回调
+       *
+       */
+      function Watcher(vm, node, name, nodeType) {
+        // 将当前订阅者指向自己
+        Dep.target = this;
+        this.vm = vm;
+        // 当前处理的节点
+        this.node = node;
+        // vue实例属性名称
+        this.name = name;
+        this.nodeType = nodeType;
+        this.update();
+        // 添加完毕，重置
+        Dep.target = null;
+      }
+
+      Watcher.prototype = {
+        update: function() {
+          // 取的该watcher的value
+          this.get();
+          if (this.nodeType == 'text') {
+            this.node.nodeValue = this.value;
+          }
+          if (this.nodeType == 'input') {
+            this.node.value = this.value;
+          }
+        },
+        get: function() {
+          // 触发vm中data对应属性的getter。取的该watcher的value
+          this.value = this.vm[this.name];
+        }
+      };
+
+      function Vue(options) {
+        this.data = options.data;
+        var data = this.data;
+
+        //给vue实例的每一个data里面的属性绑定get，set监听
+        observe(this, data);
+        var id = options.el;
+        /**
+         * 解析模板三步骤
+         * 1. 将页面中el所有子节点放入documentFragment中
+         * 2. 编译fragment中所有层次子节点，绑定watch
+         * 3. 将解析后的frament放回页面的el元素中
+         */
+        var dom = nodeToFragment(this, document.getElementById(id));
+        document.getElementById(id).appendChild(dom);
+      }
+
+      var vue = new Vue({
+        el: 'app',
+        data: {
+          text: 'hello mvvm'
+        }
+      });
+
+    </script>
+  </body>
+</html>

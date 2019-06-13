@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>动态组件</title>
+  </head>
+  <body>
+    <div id="app" v-cloak>
+      <component :is="currentView"> </component>
+      <button @click='handleChange("A")'>切换到A</button>
+      <button @click='handleChange("B")'>切换到B</button>
+      <button @click='handleChange("C")'>切换到C</button>
+    </div>
+
+    <div id="app1">
+      <my-component></my-component>
+    </div>
+
+    <script src="../vue.js"></script>
+
+    <script type="text/x-template" id="my-component">
+      <div>这里是my-component组件的template</div>
+    </script>
+
+    <script>
+
+Vue.component("my-component", {
+        template: '#my-component'
+      });
+
+      var app1 = new Vue({
+        el: "#app1"
+      });
+
+      var app = new Vue({
+        el: "#app",
+        data: {
+          currentView: "comA"
+        },
+        components: {
+          comA: {
+            template: "<div>组件A</div>"
+          },
+          comB: {
+            template: "<div>组件B</div>"
+          },
+          comC: {
+            template: "<div>组件C</div>"
+          }
+        },
+        methods: {
+          handleChange: function(com) {
+            this.currentView = "com" + com;
+          }
+        }
+      });
+
+      
+     
+    </script>
+  </body>
+</html>

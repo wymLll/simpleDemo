@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>数据代理</title>
+  </head>
+  <body>
+    <div id="test">
+      <h2>数据代理</h2>
+      <p>通过一个对象代理对另一个对象中属性的操作(读和写)，a代理b，b在a中</p>
+      <br />
+      <h2>vue数据代理</h2>
+      <p>通过vm对象来代理data</p>
+      <br />
+      <h2>好处</h2>
+      <p>更方便操作dom数据</p>
+      <h2 style="color:red">实现流程</h2>
+      <p>通过Object.defineProperty给vm添加data对象的属性对应的属性描述符</p>
+      <p>所有添加的属性都包含getter/setter</p>
+      <p>getter/setter内部去操作data对应的属性</p>
+    </div>
+
+    <script src="./mvvm/compile.js"></script>
+    <script src="./mvvm/mvvm.js"></script>
+    <script src="./mvvm/observer.js"></script>
+    <script src="./mvvm/watcher.js"></script>
+
+    <script>
+      const vm = new MVVM({
+        el: '#test',
+        data: {
+          name: 'linlin'
+        }
+      });
+      console.log(vm.name)  //代理读
+      vm.name = 'haha'  //代理写
+      console.log(vm._data.name)
+      console.log(vm)
+    </script>
+  </body>
+</html>

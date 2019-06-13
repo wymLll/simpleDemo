@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>事件委托</title>
+</head>
+<body>
+    <table>
+        <tr>
+            <th>1</th>
+            <th>2</th>
+        </tr>
+        <tr>
+            <td>11</td>
+            <td>21</td>
+        </tr>
+        <tr>
+            <td>12</td>
+            <td>22</td>
+        </tr>
+    </table>
+
+    <!-- 事件委托：根据事件冒泡原理，将原本应该在子元素监听的事件绑定到父元素上 -->
+    <script>
+        var table = document.querySelector('table');
+        table.addEventListener('click',function(event){
+            if(event.target.nodeName.toLowerCase() === 'td'){
+                alert(event.target.innerHTML)
+            }
+        })
+    </script>
+</body>
+</html>

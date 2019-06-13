@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>排序</title>
+    <style>
+      div {
+        background-color: #acc;
+        height: 604px;
+      }
+      pre {
+        vertical-align: top;
+        display: inline-block;
+        border: 2px solid;
+        height: 600px;
+        width: 600px;
+      }
+    </style>
+  </head>
+  <body>
+    <div>
+      <pre>
+        /**
+        * 插入排序
+        * 将一个记录插入已排好序的有序表中
+        */
+        function insertionSort(arr) {
+            var len = arr.length;
+            var preIndex, current;
+        
+            for (var i = 1; i < len; i++) {
+                preIndex = i-1;
+                current = arr[i];
+        
+                while(preIndex >= 0 && current < arr[preIndex]){
+                    arr[preIndex + 1] = arr[preIndex];
+                    preIndex--;
+                }
+        
+                arr[preIndex + 1] = current;
+            }
+            return arr;
+        }   
+      </pre>
+      <pre>
+        /**
+        * 希尔排序
+        * 直接插入排序算法的一种更高效的改进版本
+        * 希尔排序是把记录按下标的一定增量分组，对每组使用直接插入排序算法排序；
+        * 随着增量逐渐减少，每组包含的关键词越来越多，当增量减至1时，整个文件恰被分成一组，算法便终止
+        */
+
+        function shellSort(arr){
+            var len = arr.length;
+            var gap = Math.floor(len/2);
+        
+            while(gap > 0){
+                for(var i = gap; i < len; i++){
+                    var cur = arr[i];
+                    var preIndex = i-gap;
+        
+                    while(preIndex >= 0 && cur < arr[preIndex]){
+                        arr[preIndex+gap] = arr[preIndex];
+                        preIndex -= gap;
+                    }
+        
+                    arr[preIndex+gap] = cur;
+                    console.log(arr);
+                }
+                gap = Math.floor(gap/2);
+            }
+        
+            return arr;
+        }
+
+      </pre>
+
+    </div>
+    <div>
+      <pre>
+        /**
+        * 选择排序
+        * 找到最小/大的那个元素与最后一个位置上的元素交换
+        */
+        
+        function selectSort(arr) {
+            let len = arr.length;
+            let fin = len - 1;
+            while (fin) {
+            //   最开始的最小值，与其对应的index
+            let min = arr[0];
+            let temp = 0;
+        
+            for (let i = 1; i <= fin; i++) {
+                if (min > arr[i]) {
+                //   更新最小值与其index
+                min = arr[i];
+                temp = i;
+                }
+            }
+            // 最小值与最末尾值进行替换
+            arr[temp] = arr[fin];
+            arr[fin] = min;
+            fin--;
+            }
+            return arr;
+        }
+               
+        </pre
+      >
+
+      <pre>
+            /**
+            * 快速排序
+            * 通常以第一个元素作为关键元素
+            * 每一次排序完，key左边的值都小于key，右边的都大于key
+            */
+           
+           function quickSort(arr, left = 0, right = arr.length - 1) {
+             if (left >= right) {
+               return;
+             }
+           
+             var i = left, j = right;
+             var key = arr[left];
+             var flag = 1;
+             while (i < j) {
+               if (flag) {
+                 if (arr[j] > key) j--;
+                 else {
+                   arr[i] = arr[j];
+                   arr[j] = key;
+                   flag = 0;
+                 }
+               } else {
+                 if (arr[i] < key) i++;
+                 else {
+                   arr[j] = arr[i];
+                   arr[i] = key;
+                   flag = 1;
+                 }
+               }
+             }
+           
+             quickSort(arr, left, i - 1);
+             quickSort(arr, j + 1, right);
+           
+             return arr;
+           }
+        </pre
+      >
+    </div>
+
+    <div>
+      <pre>
+        /**
+        * 冒泡排序
+        * 原理，两两之间比较大小，第一次排序后，最大/小的在最末尾，下次冒泡不需要管理
+        */
+        
+        function bubbleSort(arr) {
+            let len = arr.length;
+            //   第一次排序，需要比较len-1此
+            let num = len - 1;
+            while (num) {
+            for (let i = 1; i < num; i++) {
+                if (arr[i] < arr[i - 1]) {
+                let temp = arr[i];
+                arr[i] = arr[i - 1];
+                arr[i - 1] = temp;
+                }
+            }
+            // 每完成一次冒泡排序，下一次两两比较次数就少一次
+            num--;
+            }
+            return arr;
+        }
+      </pre>
+      <pre>
+        /**
+        * 归并排序：先递归分解，后合并
+        */
+  
+        function mergeSort(arr){
+            var len = arr.length;
+            if(len < 2) return arr;
+  
+            var mid = Math.floor(len/2);
+  
+            var left = arr.slice(0,mid);
+            var right = arr.slice(mid);
+  
+            return merge(mergeSort(left), mergeSort(right));
+        }
+  
+        function merge(left, right){
+            var result = []
+            while(left.length >0 && right.length >0){
+                if(left[0] < right[0]) result.push(left.shift());
+                else result.push(right.shift());
+            }
+  
+            while(left.length > 0 )  result.push(left.shift());
+            while(right.length > 0 )  result.push(right.shift());
+          
+            return result;
+        }
+  
+      </pre>
+    </div>
+    <div>
+      <pre>
+        // 堆排序
+        var len;
+        function heapSort(arr){
+            len = arr.length;
+            // 建堆
+            for(var i = Math.floor(len/2); i>=0; i--) adjustHeap(arr, i);
+            
+            for(var i = len-1; i>0; i--){
+                swap(arr,0,i);
+                len--;
+                adjustHeap(arr, 0);
+            }
+            return arr;
+        }
+
+        function adjustHeap(arr, i){
+            var left = 2 * i +1,    // 左节点位置
+                right = 2 * i + 2,  //右节点位置
+                largeset = i;
+          
+            // 如果左节点存在并且左节点大于当前最大节点，交换位置
+            if(left < len && arr[left] > arr[largeset]){
+                largeset = left;
+            }
+            // 如果右节点存在并且右节点大于当前最大节点，交换位置
+            if(right < len && arr[right] > arr[largeset]){
+                largeset = right;
+            }
+            // 如果发现修改了位置，则交换值，并且继续向下调整堆
+            if(largeset != i){
+                swap(arr, i, largeset);
+                adjustHeap(arr, largeset);
+            }
+        }
+
+        function swap(arr, i, j) {
+            var temp = arr[i]
+            arr[i] = arr[j]
+            arr[j] = temp
+        }
+      </pre>
+      <pre>
+        /**
+        * 计数排序
+        * 特征：输入数据必定在一个范围之内
+        * 核心：数据化为index存储在额外的空间中
+        */
+        function countingSort(arr, maxValue){
+            var len = arr.length,
+                bucket = new Array(maxValue + 1),
+                bucketLen = maxValue +1;
+
+            // 对arr遍历，生成bucket数组
+            for(var i = 0; i < len; i++){
+                var index = arr[i];
+                if(!bucket[index]) bucket[index] = 0;
+                bucket[index]++;
+            }
+
+            i = 0;
+            for(var j = 0; j < bucketLen; j++){
+                while(bucket[j]>0){
+                    arr[i++] = j;
+                    bucket[j]--;
+                }
+            }
+            return arr;
+        }
+      </pre>
+    </div>
+    <div>
+
+      <div>
+        <pre>
+        /**
+        * LSD 基数排序
+        */
+        
+        let counter = new Array(10);
+        function radixSort(arr, d) {
+          let mod = 10;
+          let dev = 1;
+          let len = arr.length;
+          for (let i = 0; i < d; i++, mod *= 10, dev *= 10) {
+            // 按桶分配
+            for (let j = 0; j < len; j++) {
+              const ele = arr[j];
+              let bucket = parseInt((ele % mod) / dev);
+              if (counter[bucket] == null) counter[bucket] = [];
+              counter[bucket].push(ele);
+            }
+        
+            // 整合
+            arr = [];
+            for (let k = 0; k < 10; k++) {
+              if (counter[k]) {
+                let val;
+                while ((val = counter[k].shift()) != null) {
+                  arr.push(val);
+                }
+              }
+            }
+          }
+          return arr;
+        }
+        
+        var arr = [99, 15, 48, 75, 46, 37, 90, 100];
+        
+        console.log(radixSort(arr, 3)); //[ 15, 37, 46, 48, 75, 90, 99, 100 ]
+        
+           
+        </pre>
+
+        <pre>
+        /**
+        * 桶排序
+        */
+        
+        function bucketSort(arr, bucketSize = 5){
+            let len = arr.length;
+            if(len === 0) return arr;
+            
+            let min = Math.min.apply(null, arr);
+            let max = Math.max.apply(null, arr);
+        
+            let bucketCount = Math.floor((max - min)/bucketSize) + 1; //桶的数量
+            let buckets = new Array(bucketCount);   //存储所有桶
+            for(let i = 0; i < bucketCount; i++) buckets[i] = [];   //初始化每个桶
+        
+            for(let i = 0; i < len; i++) {  //分桶
+                buckets[Math.floor((max - min)/bucketSize)].push(arr[i]);
+            }
+        
+            arr.length = 0;
+            for(let i = 0; i < buckets.length; i++){
+                insertSort(buckets[i]); //对每个桶进行 插入排序
+                for (var j = 0; j < buckets[i].length; j++) {
+                    arr.push(buckets[i][j]);                      
+                }
+            }
+            console.log(arr)
+            return arr;
+        }
+      
+        </pre>
+      </div>
+     
+    </div>
+  </body>
+</html>

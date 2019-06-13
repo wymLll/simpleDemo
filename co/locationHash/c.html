@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>Page Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+  </head>
+  <body>
+      <!-- localhost:4000 -->
+      <p>我是c页面</p>
+    <script>
+      console.log(location.hash);
+      let iframe = document.createElement('iframe');
+      iframe.src = 'http://localhost:3000/b.html#idontloveyou';
+      document.body.appendChild(iframe);
+    </script>
+  </body>
+</html>

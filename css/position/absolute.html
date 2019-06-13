@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>absolute</title>
+    <style>
+      .box1 {
+        height: 200px;
+        width: 200px;
+        background-color: #dbf;
+        /* position: relative; */
+      }
+      .cbox1 {
+        background-color: #fabb;
+        /* position: absolute;
+            top: 30px;
+            left: 30px; */
+      }
+
+      .box2 {
+        height: 200px;
+        width: 200px;
+        background-color: #dbf;
+        position: relative;
+      }
+      .box2 >  span {
+        background-color: #fabb;
+        position: absolute;
+            top: 30px;
+            left: 30px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="box1">
+      <div class="cbox1">absolute</div>
+      <!-- <strong>Test</strong> -->
+    </div>
+    <!-- <p>相对于父元素的位置: top: 30px;
+            left: 30px;</p> -->
+    <img src="absoluteF.png" alt="absoluteF" />
+
+    <!-- <p>相对于浏览器窗口的位置: top: 30px;
+            left: 30px;</p> -->
+    <img src="absoluteB.png" alt="absoluteB" />
+
+    <br />
+
+    <div class="box2">
+      <span>内联元素</span>
+    </div>
+    <p>相对于父元素的位置: top: 30px;
+            left: 30px; 内联元素边为块元素</p>
+  </body>
+</html>

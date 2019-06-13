@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>解决浮动以及父子外边距重叠</title>
+    <style>
+      p {
+        text-indent: 2em;
+      }
+      .initbox {
+        background-color: aquamarine;
+      }
+      .initbox1 {
+        background-color: bisque;
+        width: 100px;
+        height: 100px;
+      }
+      .firbox {
+        background-color: aquamarine;
+      }
+      .firbox1 {
+        background-color: bisque;
+        width: 140px;
+        height: 100px;
+        float: left;
+      }
+
+      .secbox {
+        background-color: aquamarine;
+      }
+      .secbox1 {
+        background-color: bisque;
+        width: 100px;
+        height: 100px;
+        float: left;
+      }
+      .secbox2 {
+        background-color: cadetblue;
+        width: 100px;
+        height: 100px;
+      }
+
+      .thirbox {
+        background-color: aquamarine;
+      }
+      .thirbox1 {
+        background-color: bisque;
+        width: 100px;
+        height: 100px;
+        float: left;
+      }
+      .thirbox2 {
+        background-color: cadetblue;
+        width: 100px;
+        height: 100px;
+      }
+      .fourbox {
+        background-color: aquamarine;
+      }
+      .fourbox1 {
+        background-color: bisque;
+        width: 100px;
+        height: 100px;
+        float: left;
+      }
+      .fourbox2 {
+        background-color: cadetblue;
+        width: 100px;
+        height: 200px;
+        float: right;
+      }
+
+      /* 测试去除浮动影响 */
+      .fivbox {
+        background-color: aquamarine;
+      }
+      .fivbox1 {
+        background-color: bisque;
+        width: 100px;
+        height: 100px;
+        float: left;
+      }
+      .fivbox2 {
+        background-color: bisque;
+        width: 100px;
+        height: 200px;
+        float: right;
+      }
+
+      /* 去除浮动以及父子元素外边距重叠 */
+      .clearfix::before,
+      .clearfix::after {
+        content: '';
+        display: table;
+        clear: both;
+      }
+
+      /* 解决ie */
+      .clearfix {
+        zoom: 1;
+      }
+    </style>
+  </head>
+  <body>
+    <fieldset>
+      <legend>默认</legend>
+      <!-- 默认块元素占据一整行 子元素撑开父元素-->
+      <div class="initbox">
+        <div class="initbox1"></div>
+        <p>默认块元素占据一整行 子元素撑开父元素</p>
+        <!-- <div class="box2"></div>
+        <div class="box3"></div>
+        <div class="box4"></div> -->
+      </div>
+    </fieldset>
+
+    <fieldset>
+      <legend>示例1</legend>
+      <div class="firbox">
+        <div class="firbox1">
+          我是浮动的，虽然撑不开我父亲，但是我也超越不出我父亲的范围
+        </div>
+      </div>
+      <p>
+        我是第一个模块的，我上面的子块元素浮动，脱离文档流，不能撑开父元素
+        <strong>我竟然上移了，还跑去了右边!</strong>
+        如果我内容足够，我还可以包围浮动的家伙
+      </p>
+    </fieldset>
+
+    <fieldset>
+      <legend>示例</legend>
+      <div class="secbox">
+        <div class="secbox1"></div>
+        <div class="secbox2"></div>
+      </div>
+
+      <p>
+        我是第二个模块的，但是我上面的浮动家伙导致我和我的子元素都上移，我的一个子元素让他吧头部给遮住了。真的是讨人厌
+      </p>
+    </fieldset>
+
+    <fieldset>
+      <legend>示例3</legend>
+      <div class="thirbox">
+        <div class="thirbox1"></div>
+        <div class="thirbox2"></div>
+      </div>
+
+      <p>
+        我是第三个，你肯定想不到我是浮动的，我下面还有一个没有浮动的
+      </p>
+    </fieldset>
+
+    <fieldset>
+      <legend>示例4</legend>
+      <div class="fourbox">
+        <div class="fourbox1"></div>
+        <div class="fourbox2"></div>
+      </div>
+
+      <p>
+        我是第四个
+      </p>
+    </fieldset>
+
+    <fieldset>
+      <legend>示例5</legend>
+      <div class="fivbox clearfix">
+        <div class="fivbox1"></div>
+        <div class="fivbox2"></div>
+      </div>
+      <div style="clear:both">
+        我是第五个,我可以测试是否去除了浮动影响
+      </div>
+    </fieldset>
+  </body>
+</html>

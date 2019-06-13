@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>节流防抖</title>
+    <style>
+      #box1 {
+        height: 3000;
+        background-color: #aea;
+      }
+
+    </style>
+  </head>
+  <body>
+    <button id="btn">点点点</button>
+
+    <div id="box1">
+      <p>Bacon Ipsum dolor sit amet...</p>
+      <p>Bacon Ipsum dolor sit amet...</p>
+      <p>Bacon Ipsum dolor sit amet...</p>
+      <p>Bacon Ipsum dolor sit amet...</p>
+      <p>Bacon Ipsum dolor sit amet...</p>
+      <p>Bacon Ipsum dolor sit amet...</p>
+      <p>Bacon Ipsum dolor sit amet...</p>
+      <p>Bacon Ipsum dolor sit amet...</p>
+      <p>Bacon Ipsum dolor sit amet...</p>
+      <p>Bacon Ipsum dolor sit amet...</p>
+      <p>Bacon Ipsum dolor sit amet...</p>
+      <p>Bacon Ipsum dolor sit amet...</p>
+      <p>Bacon Ipsum dolor sit amet...</p>
+      <p>Bacon Ipsum dolor sit amet...</p>
+      <p>Bacon Ipsum dolor sit amet...</p>
+      <p>Bacon Ipsum dolor sit amet...</p>
+      <p>Bacon Ipsum dolor sit amet...</p>
+      <p>Bacon Ipsum dolor sit amet...</p>
+      <p>Bacon Ipsum dolor sit amet...</p>
+      <p>Bacon Ipsum dolor sit amet...</p>
+      <p>Bacon Ipsum dolor sit amet...</p>
+      <p>Bacon Ipsum dolor sit amet...</p>
+      <p>Bacon Ipsum dolor sit amet...</p>
+      <p>Bacon Ipsum dolor sit amet...</p>
+      <p>Bacon Ipsum dolor sit amet...</p>
+      <p>Bacon Ipsum dolor sit amet...</p>
+      <p>Bacon Ipsum dolor sit amet...</p>
+      <p>Bacon Ipsum dolor sit amet...</p>
+      <p>Bacon Ipsum dolor sit amet...</p>
+      <p>Bacon Ipsum dolor sit amet...</p>
+      <p>Bacon Ipsum dolor sit amet...</p>
+      <p>Bacon Ipsum dolor sit amet...</p>
+      <p>Bacon Ipsum dolor sit amet...</p>
+      <p>Bacon Ipsum dolor sit amet...</p>
+      <p>Bacon Ipsum dolor sit amet...</p>
+      <p>Bacon Ipsum dolor sit amet...</p>
+      <p>Bacon Ipsum dolor sit amet...</p>
+      <p>Bacon Ipsum dolor sit amet...</p>
+      <p>Bacon Ipsum dolor sit amet...</p>
+      <p>Bacon Ipsum dolor sit amet...</p>
+      <p>Bacon Ipsum dolor sit amet...</p>
+      <p>Bacon Ipsum dolor sit amet...</p>
+      <p>Bacon Ipsum dolor sit amet...</p>
+      <p>Bacon Ipsum dolor sit amet...</p>
+      <p>Bacon Ipsum dolor sit amet...</p>
+      <p>Bacon Ipsum dolor sit amet...</p>
+      <p>Bacon Ipsum dolor sit amet...</p>
+      <p>Bacon Ipsum dolor sit amet...</p>
+      <p>Bacon Ipsum dolor sit amet...</p>
+      <p>Bacon Ipsum dolor sit amet...</p>
+    </div>
+
+    <script src="../js/jquery-1.11.0.js"></script>
+    <script>
+      /**
+       * 节流：一般用于http请求
+       * 使得一定时间内只触发一次函数
+      */
+      function conso() {
+        console.log('is run');
+      }
+      var btnUse = true;
+      $('#btn').click(function() {
+        if (btnUse) {
+          conso();
+          btnUse = false;
+        }
+        setTimeout(function() {
+          btnUse = true;
+        }, 2000);
+      });
+
+      /**
+       * 防抖: 比如scroll
+       * 将几次操作合并为一此操作进行
+      */
+      let timer;
+      window.onscroll = function() {
+        if (timer) {
+          clearTimeout(timer);
+        } else {
+          setTimeout(function() {
+            let scrollTop =
+              document.body.scrollTop || document.documentElement.scrollTop;
+            console.log('滚动条位置：' + scrollTop);
+            timer = undefined;
+          }, 2000);
+        }
+      };
+    </script>
+  </body>
+</html>

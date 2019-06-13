@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+  </head>
+  <body>
+    <!-- 
+          给出一个段文本，将文本内容输出为特定内容
+
+            文本
+
+            aa "55" $c b
+            nn (8*) q 12
+            true sdc 12 2w2
+
+
+            输出：
+            0: (4) ["aa", ""55"", "$c", "b"]
+            1: (4) ["nn", "(8*)", "q", "12"]
+            2: (4) ["true", "sdc", "12", "2w2"] 
+       -->
+    <input class="file" type="file" />
+    <script>
+      var file = document.querySelector('.file');
+      file.addEventListener('change', function(e) {
+        var fileRead = new FileReader();
+        fileRead.readAsText(e.target.files[0]);
+        fileRead.onload = function() {
+          var text = fileRead.result;
+          text = text.match(/[\s\S]+/g)[0];
+          var textArr = text.split(/[\r\n]+/);
+          var arr = [];
+          textArr.forEach(function(item) {
+            arr.push(item.split(/\s+/));
+          });
+          console.log(arr);
+        };
+      });
+    </script>
+  </body>
+</html>

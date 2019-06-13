@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>动画-animation</title>
+
+    <style>
+      div {
+        width: 300px;
+        display: inline-block;
+        vertical-align: top;
+        margin: 20px 10px;
+      }
+      [id^='div'] {
+        height: 150px;
+        width: 150px;
+        border: 1px solid;
+      }
+      @keyframes rainbow {
+        0% {
+          background: red;
+        }
+        20% {
+          background: orange;
+        }
+        40% {
+          background: yellow;
+        }
+        60% {
+          background: green;
+        }
+        80% {
+          background: blue;
+        }
+        100% {
+          background: purple;
+        }
+      }
+      #div1:hover {
+        animation: 2s rainbow;
+      }
+      #div2:hover {
+        animation: 2s rainbow infinite;
+      }
+      #div3:hover {
+        animation: 2s rainbow 2;
+      }
+      #div4:hover {
+        animation: 1s rainbow forwards;
+      }
+      #div5:hover {
+        animation: 1s rainbow backwards;
+      }
+      #div6:hover {
+        animation: 3s rainbow infinite reverse;
+      }
+      #div7:hover {
+        animation: 3s rainbow infinite alternate;
+      }
+      #div8:hover {
+        animation: 3s rainbow infinite alternate-reverse;
+      }
+      #div9:hover {
+        animation: 3s rainbow infinite steps(10);
+      }
+      #div10 {
+        animation: rainbow 1s linear infinite;
+        animation-play-state: paused;
+      }
+      #div10:hover {
+        animation-play-state: running;
+      }
+      p{
+          text-indent: 2em
+      }
+    </style>
+  </head>
+  <body>
+    <div>
+      <p>
+        CSS Animation需要指定动画一个周期持续的时间，以及动画效果的名称。
+      </p>
+      <div id="div1"></div>
+    </div>
+    <div>
+      <p>默认情况动画播放一次，加入infinite关键字，可以让动画无限次播放</p>
+      <div id="div2"></div>
+    </div>
+    <div>
+      <p>指定动画具体播放的次数，比如2次。</p>
+      <div id="div3"></div>
+    </div>
+    <div>
+      <p>
+        让动画保持在结束状态，forwards
+      </p>
+      <div id="div4"></div>
+    </div>
+    <div>
+      <p>
+        让动画回到第一帧的状态，backwords
+      </p>
+      <div id="div5"></div>
+    </div>
+    <div>
+      <p>
+        animation-direction:
+        指定了动画播放的方向，最常用的值是normal和reverse。浏览器对其他值的支持情况不佳，应该慎用。
+      </p>
+      <div id="div6"></div>
+    </div>
+    <div>
+      <p>
+        infinite alternate
+      </p>
+      <div id="div7"></div>
+    </div>
+    <div>
+      <p>
+        infinite alternate-reverse
+      </p>
+      <div id="div8"></div>
+    </div>
+    <div>
+      <p>
+        浏览器从一个状态向另一个状态过渡，是平滑过渡。steps函数可以实现分步过渡。
+      </p>
+      <div id="div9"></div>
+    </div>
+    <div>
+      <p>
+        想让动画保持突然终止时的状态，就要使用animation-play-state属性。
+      </p>
+      <p>
+        没有鼠标没有悬停时，动画状态是暂停；一旦悬停，动画状态改为继续播放。效果如下。
+      </p>
+      <div id="div10"></div>
+    </div>
+
+  </body>
+</html>

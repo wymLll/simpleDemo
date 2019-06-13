@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>组件示例</title>
+  </head>
+  <body>
+    <div id="app">
+      myapp
+
+      <!-- <my-component message='来自父组件的数据'></my-component>  -->
+
+      <!-- 绑定父元素动态数据 -->
+      <!-- <input v-model="parentMessage" type="text" />
+      <my-component :message="parentMessage"></my-component> -->
+
+      <!-- 若是直接传递数字，布尔值，数组，对象 不使用v-bin，则绑定的只是字符串（整个数组对象看成字符串与toSting还不一样）。下面结果分别为：7，3 -->
+      <my-component message="[1,2,3]"></my-component>
+      <my-component :message="[1,2,3]"></my-component>
+    </div>
+
+    <script src="../vue.js"></script>
+    <!-- <script src="index.js"></script> -->
+
+    <script>
+      Vue.component("my-component", {
+        props: ["message"],
+        template: "<div>{{message.length}}</div>"
+      });
+      var app = new Vue({
+        el: "#app",
+        data: {
+          parentMessage: ""
+        }
+      });
+    </script>
+  </body>
+</html>

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>Vue Study</title>
+  </head>
+  <body>
+    <div id="app">
+      <foo-component :foo-message="fooMessage"></foo-component>
+    </div>
+
+    <script src="../vue.js"></script>
+    <script type="text/javascript">
+      var fooComponent = {
+        props: {
+          fooMessage: Number
+        },
+        template: "<div> {{ fooMessage }} </div>"
+      };
+
+      var vm = new Vue({
+        components: {
+          "foo-component": fooComponent
+        },
+        el: "#app",
+        data: {
+          fooMessage: 123
+        }
+      });
+    </script>
+  </body>
+</html>
