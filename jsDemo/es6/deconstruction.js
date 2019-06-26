@@ -73,4 +73,16 @@ function foo() {
 
 
 var o = {[Symbol.toStringTag]: "wao", [Symbol.toStringTag]: "yooh"}
-console.log(o) //yooh {Symbol(Symbol.toStringTag): "yooh"}
+console.log(o) //Object [yooh] { [Symbol(Symbol.toStringTag)]: 'yooh' }
+
+
+{ //数组结构知识点
+  let array = [,,,]
+console.log(array) //[ <3 empty items> ]
+console.log(0 in array) //false
+
+array = [1,,2,3]
+console.log(array)  //[ 1, <1 empty item>, 2, 3 ]
+console.log(1 in array) //false
+console.log(array[1]) //undefined
+}

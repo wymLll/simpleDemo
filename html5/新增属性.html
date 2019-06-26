@@ -11,13 +11,13 @@
       <input type="color" />
       <input type="range" min="1" max="10" />
       <input type="tel" />
-      <input type="search" placeholder="搜索字段的外观与常规的文本字段无异" />
-      <input type="url" placeholder="必须得有http://x" />
-      date: <input type="date" />
-      <input type="month" />
-      <input type="week" />
-      <input type="time" />
-      datetime-local: <input type="datetime-local" />
+      <input type="search" placeholder="搜索的外观与常规的无异" />
+      <input type="url" placeholder="url必须得有http://x" />
+
+      date: <input type="date" /> month: <input type="month" /> week:
+      <input type="week" /> time: <input type="time" /> datetime-local:
+      <input type="datetime-local" />
+
       <!-- image 输入类型将图像定义为提交按钮。 -->
       <p>
         <input
@@ -126,6 +126,31 @@
       }
 
       document.getElementById('test').indeterminate = true;
+
+      //date赋值方式：yyyy-mm-dd
+      let date = document.querySelector('input[type = date]');
+      console.log(date);
+      date.value = '2019-11-11';
+
+      //month赋值方式：yyyy-mm
+      let month = document.querySelector('input[type = month]');
+      console.log(month);
+      month.value ='2019-11';
+
+      //week赋值方式：yyyy-Wzz (zz范围：01-53)
+      let week = document.querySelector('input[type = week]');
+      console.log(week);
+      week.value ='2019-W09';
+
+      //time赋值方式：yyyy-zz
+      let time = document.querySelector('input[type = time]');
+      console.log(time);
+      time.value ='11:01';
+
+      //datetime-local赋值方式：yyyy-mm-ddThh:mm，可以后面继续加:ss | :ss.SSS
+      let localDate = document.querySelector('input[type = datetime-local]');
+      console.log(localDate);
+      localDate.value ='2019-11-11T23:59:01';
     </script>
   </body>
 </html>

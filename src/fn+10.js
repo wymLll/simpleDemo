@@ -27,4 +27,4 @@ function fn() {
   };
   
   console.log(fn + 10); // 15
-  
+  console.log(fn + '1'); //51

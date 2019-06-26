@@ -10,7 +10,7 @@
         text-indent: 2em;
       }
       .initbox {
-        background-color: aquamarine;
+        background-color: yellowgreen;
       }
       .initbox1 {
         background-color: bisque;
@@ -18,7 +18,7 @@
         height: 100px;
       }
       .firbox {
-        background-color: aquamarine;
+        background-color: yellowgreen;
       }
       .firbox1 {
         background-color: bisque;
@@ -28,7 +28,7 @@
       }
 
       .secbox {
-        background-color: aquamarine;
+        background-color: yellowgreen;
       }
       .secbox1 {
         background-color: bisque;
@@ -38,12 +38,12 @@
       }
       .secbox2 {
         background-color: cadetblue;
-        width: 100px;
-        height: 100px;
+        width: 200px;
+        height: 200px;
       }
 
       .thirbox {
-        background-color: aquamarine;
+        background-color: yellowgreen;
       }
       .thirbox1 {
         background-color: bisque;
@@ -57,7 +57,7 @@
         height: 100px;
       }
       .fourbox {
-        background-color: aquamarine;
+        background-color: yellowgreen;
       }
       .fourbox1 {
         background-color: bisque;
@@ -74,7 +74,7 @@
 
       /* 测试去除浮动影响 */
       .fivbox {
-        background-color: aquamarine;
+        background-color: yellowgreen;
       }
       .fivbox1 {
         background-color: bisque;
@@ -119,26 +119,28 @@
     <fieldset>
       <legend>示例1</legend>
       <div class="firbox">
+        <div style="width: 200px; height: 20px; background-color:#000"></div>
         <div class="firbox1">
-          我是浮动的，虽然撑不开我父亲，但是我也超越不出我父亲的范围
+          我是浮动的，撑不开父元素，超越不出上级兄弟块元素以及父元素的范围
         </div>
+        <p>我是浮动元素的兄弟元素p</p>
       </div>
-      <p>
-        我是第一个模块的，我上面的子块元素浮动，脱离文档流，不能撑开父元素
-        <strong>我竟然上移了，还跑去了右边!</strong>
-        如果我内容足够，我还可以包围浮动的家伙
+      <p style="background-color: cadetblue">
+        我是第一个模块的，我的兄弟子元素浮动，脱离文档流，不能撑开父元素
+        <strong>我竟然没有被覆盖住，跑去了右边!</strong>
+        我的部分范围被浮动元素1覆盖住了
       </p>
     </fieldset>
 
     <fieldset>
-      <legend>示例</legend>
+      <legend>示例2</legend>
       <div class="secbox">
         <div class="secbox1"></div>
         <div class="secbox2"></div>
       </div>
 
       <p>
-        我是第二个模块的，但是我上面的浮动家伙导致我和我的子元素都上移，我的一个子元素让他吧头部给遮住了。真的是讨人厌
+        我是第二个模块的。
       </p>
     </fieldset>
 
@@ -162,7 +164,7 @@
       </div>
 
       <p>
-        我是第四个
+        我是第四个，分别向左向右浮动
       </p>
     </fieldset>
 

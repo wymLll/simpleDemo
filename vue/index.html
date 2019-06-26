@@ -1,52 +1,56 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <title>Document</title>
-</head>
-<body>
+  </head>
+  <body>
     <div class="" id="app">
-	<div>
-      <p>FullName: {{fullName}}</p>
-      <p>FirstName: <input type="text" v-model="firstName"></p>
-	</div>
-	</div>
+      <div>
+        <p>{{sayHi}}</p>
+        <p>FullName: {{ fullName }}</p>
+        <p>FirstName: <input type="text" v-model="firstName" /></p>
+      </div>
+    </div>
 
-    <script src="../vue.js"></script>
+    <script src="../js/vue.js"></script>
 
     <script>
+      let vue = new Vue({
+        el: '#app',
+        data: {
+          firstName: 'Dawei',
+          lastName: 'Lou',
+          fullName: '',
+        },
+        // watch特点：最初绑定的时候不会执行，要等到firstName改变时才会执行
+        //  watch: {
+        //   firstName(newName, oldName) {
+        //     this.fullName = newName + ' ' + this.lastName;
+        //   }
+        // },
+        //解决方案：给firstName绑定一个handler，
+        //immediate:true代表如果在 wacth 里声明了 firstName 之后，就会立即先去执行里面的handler方法，如果为 false就跟我们以前的效果一样，不会在绑定的时候就执行。
+        watch: {
+          firstName: {
+            handler(newName, oldName) {
+              this.fullName = newName + ' ' + this.lastName;
+            },
+            // 代表在wacth里声明了firstName这个方法之后立即先去执行handler方法
+            immediate: true
+          }
+        },
 
-let vue = new Vue({
-  el: '#app',
-  data: {
-    firstName: 'Dawei',
-    lastName: 'Lou',
-    fullName: ''
-  },
-  //watch特点：最初绑定的时候不会执行，要等到firstName改变时才会执行
-//  watch: {
- //   firstName(newName, oldName) {
- //     this.fullName = newName + ' ' + this.lastName;
- //   }
- // } 
- //解决方案：给firstName绑定一个handler，
- //immediate:true代表如果在 wacth 里声明了 firstName 之后，就会立即先去执行里面的handler方法，如果为 false就跟我们以前的效果一样，不会在绑定的时候就执行。
- watch: {
-  firstName: {
-    handler(newName, oldName) {
-      this.fullName = newName + ' ' + this.lastName;
-    },
-    // 代表在wacth里声明了firstName这个方法之后立即先去执行handler方法
-    immediate: true
-  }
-}
+        computed: {
+          ['sayHi']() {
+            return 'Hi';
+          }
+        }
+      });
 
-})
-
-console.log(vue )
-
+      console.log(vue);
     </script>
-</body>
+  </body>
 </html>
