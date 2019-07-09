@@ -10,7 +10,6 @@
         height: 3000;
         background-color: #aea;
       }
-
     </style>
   </head>
   <body>
@@ -74,7 +73,7 @@
       /**
        * 节流：一般用于http请求
        * 使得一定时间内只触发一次函数
-      */
+       */
       function conso() {
         console.log('is run');
       }
@@ -92,19 +91,18 @@
       /**
        * 防抖: 比如scroll
        * 将几次操作合并为一此操作进行
-      */
+       */
       let timer;
       window.onscroll = function() {
         if (timer) {
           clearTimeout(timer);
-        } else {
-          setTimeout(function() {
-            let scrollTop =
-              document.body.scrollTop || document.documentElement.scrollTop;
-            console.log('滚动条位置：' + scrollTop);
-            timer = undefined;
-          }, 2000);
         }
+        timer = setTimeout(function() {
+          let scrollTop =
+            document.body.scrollTop || document.documentElement.scrollTop;
+          console.log('滚动条位置：' + scrollTop);
+          timer = undefined;
+        }, 200);
       };
     </script>
   </body>

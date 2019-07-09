@@ -10,8 +10,10 @@
         background-color: rgb(224, 206, 247);
         border: 5px solid rebeccapurple;
         /* 非visible；父元素可以包含浮动子元素 */
-        /* overflow: hidden; */
-        display: inline-block;
+        overflow: hidden;
+        /* display: inline-block; */
+        /* float: left;  */
+        /* position: absolute */
       }
       .float {
         float: left;
@@ -40,8 +42,9 @@
     </style>
   </head>
   <body>
-    <!-- bfc：是的父元素可以包含浮动子元素 -->
-    <!-- 解决高度塌陷 -->
+    <div>
+        bfc：使得父元素可以包含浮动子元素，也可解决高度塌陷
+    </div>
     <div class="box">
       <div class="float">I am a floated box!</div>
       <p>I am content inside the container.</p>

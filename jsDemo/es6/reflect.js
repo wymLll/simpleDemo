@@ -8,6 +8,9 @@
  */
 
 {
+  /**
+   * Reflect.apply()
+   */
   // 老写法
   console.log(Function.prototype.apply.call(Math.floor, undefined, [1.75])); // 1
   // 新写法

@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>盒子模型大小</title>
+    <style>
+      .box1 {
+        width: 100px;
+        height: 100px;
+        background-color: rgb(10, 243, 126);
+      }
+      .box2 {
+        width: 100px;
+        height: 100px;
+        padding: 10px;
+        background-color: rgb(10, 243, 126);
+      }
+      .box3 {
+        width: 100px;
+        height: 100px;
+        border: 2px solid;
+        background-color: rgb(10, 243, 126);
+      }
+      .box4 {
+        width: 100px;
+        height: 100px;
+        margin: 10px;
+        background-color: rgb(10, 243, 126);
+      }
+      .box5 {
+        width: 100px;
+        height: 100px;
+        padding: 10px;
+        border: 2px solid;
+        margin: 10px;
+        background-color: rgb(10, 243, 126);
+      }
+      .box6 {
+        width: 100px;
+        height: 100px;
+        padding: 10px;
+        border: 2px solid;
+        margin: 10px;
+        background-color: rgb(10, 243, 126);
+      }
+      .srcoll-par {
+        width: 100px;
+        height: 100px;
+        overflow: auto;
+      }
+      .box7 {
+        width: 200px;
+        height: 200px;
+        background-color: rgb(10, 243, 126);
+        font-size: 20px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="box1"></div>
+    <br />
+    <div class="box2"></div>
+    <br />
+    <div class="box3"></div>
+    <br />
+    <div class="box4"></div>
+    <br />
+    <div class="box5"></div>
+
+    <div style="position: relative">
+      hello
+      <div>
+        js
+        <div class="box6"></div>
+      </div>
+    </div>
+
+    <div class="srcoll-par" onscroll = "scrollFunc(this)">
+      <div class="box7">hello world</div>
+    </div>
+    <script src="../js/jquery-1.11.0.js"></script>
+
+    <script>
+      console.log('----------------原生js--------------------------');
+      console.log('offsetWidth offsetHeight: 盒子的大小不包括margin');
+
+      console.log(document.getElementsByClassName('box1')[0].offsetWidth); //100
+      console.log(document.getElementsByClassName('box1')[0].offsetHeight); //100
+
+      console.log(document.getElementsByClassName('box2')[0].offsetWidth); //120
+      console.log(document.getElementsByClassName('box2')[0].offsetHeight); //120
+
+      console.log(document.getElementsByClassName('box3')[0].offsetWidth); //104
+      console.log(document.getElementsByClassName('box3')[0].offsetHeight); //104
+
+      console.log(document.getElementsByClassName('box4')[0].offsetWidth); //100
+      console.log(document.getElementsByClassName('box4')[0].offsetHeight); //100
+
+      console.log(document.getElementsByClassName('box5')[0].offsetWidth); //124
+      console.log(document.getElementsByClassName('box5')[0].offsetHeight); //124
+      console.log(document.body.offsetHeight); //848
+
+      console.log('offsetTop offsetLeft: 边框左上角与已定位父容器的距离');
+
+      console.log(document.getElementsByClassName('box1')[0].offsetLeft); //8
+      console.log(document.getElementsByClassName('box1')[0].offsetTop); //8
+
+      console.log(document.getElementsByClassName('box2')[0].offsetLeft); //8
+      console.log(document.getElementsByClassName('box2')[0].offsetTop); //129
+
+      console.log(document.getElementsByClassName('box3')[0].offsetLeft); //8
+      console.log(document.getElementsByClassName('box3')[0].offsetTop); //270
+
+      console.log(document.getElementsByClassName('box4')[0].offsetLeft); //18
+      console.log(document.getElementsByClassName('box4')[0].offsetTop); //405
+
+      console.log(document.getElementsByClassName('box5')[0].offsetLeft); //18
+      console.log(document.getElementsByClassName('box5')[0].offsetTop); //546
+
+      console.log(document.body.offsetLeft); //0
+      console.log(document.body.offsetTop); //0
+      console.log(document.getElementsByClassName('box6')[0].offsetTop); //732
+      console.log(document.getElementsByClassName('box6')[0].offsetLeft); //18
+
+      console.log('clientWidth clientHeight: 盒子的大小不包括margin和border');
+
+      console.log(document.getElementsByClassName('box1')[0].clientWidth); //100
+      console.log(document.getElementsByClassName('box1')[0].clientHeight); //100
+
+      console.log(document.getElementsByClassName('box2')[0].clientWidth); //120
+      console.log(document.getElementsByClassName('box2')[0].clientHeight); //120
+
+      console.log(document.getElementsByClassName('box3')[0].clientWidth); //100
+      console.log(document.getElementsByClassName('box3')[0].clientHeight); //100
+
+      console.log(document.getElementsByClassName('box4')[0].clientWidth); //100
+      console.log(document.getElementsByClassName('box4')[0].clientHeight); //100
+
+      console.log(document.getElementsByClassName('box5')[0].clientWidth); //120
+      console.log(document.getElementsByClassName('box5')[0].clientHeight); //120
+      console.log(document.body.clientHeight); //848
+
+      console.log('clientLeft clientTop: 左上边框的宽度');
+
+      console.log(document.getElementsByClassName('box1')[0].clientLeft); //0
+      console.log(document.getElementsByClassName('box1')[0].clientTop); //0
+
+      console.log(document.getElementsByClassName('box2')[0].clientLeft); //0
+      console.log(document.getElementsByClassName('box2')[0].clientTop); //0
+
+      console.log(document.getElementsByClassName('box3')[0].clientLeft); //2
+      console.log(document.getElementsByClassName('box3')[0].clientTop); //2
+
+      console.log(document.getElementsByClassName('box4')[0].clientLeft); //0
+      console.log(document.getElementsByClassName('box4')[0].clientTop); //0
+
+      console.log(document.getElementsByClassName('box5')[0].clientLeft); //2
+      console.log(document.getElementsByClassName('box5')[0].clientTop); //2
+      console.log(document.body.clientTop); //0
+
+      console.log('----------------jQuery--------------------------');
+      console.log('width height: 只有content内容 此处都是100');
+      console.log($('.box1').width());
+      console.log($('.box1').height());
+      console.log($('.box2').width());
+      console.log($('.box2').height());
+      console.log($('.box3').width());
+      console.log($('.box3').height());
+      console.log($('.box4').width());
+      console.log($('.box4').height());
+      console.log($('.box5').width());
+      console.log($('.box5').height());
+      console.log($('.box6').width());
+      console.log($('.box6').height());
+
+      console.log('outerWidth outerHeight: 4个总和');
+      console.log($('.box1').outerWidth());
+      console.log($('.box1').outerHeight());
+      console.log($('.box2').outerWidth());
+      console.log($('.box2').outerHeight());
+      console.log($('.box3').outerWidth());
+      console.log($('.box3').outerHeight());
+      console.log($('.box4').outerWidth());
+      console.log($('.box4').outerHeight());
+      console.log($('.box5').outerWidth());
+      console.log($('.box5').outerHeight());
+      console.log($('.box6').outerWidth());
+      console.log($('.box6').outerHeight());
+
+      console.log('innerWidth innerHeight: 3个总和不包括margin');
+      console.log($('.box1').innerWidth());
+      console.log($('.box1').innerHeight());
+      console.log($('.box2').innerWidth());
+      console.log($('.box2').innerHeight());
+      console.log($('.box3').innerWidth());
+      console.log($('.box3').innerHeight());
+      console.log($('.box4').innerWidth());
+      console.log($('.box4').innerHeight());
+      console.log($('.box5').innerWidth());
+      console.log($('.box5').innerHeight());
+      console.log($('.box6').innerWidth());
+      console.log($('.box6').innerHeight());
+      console.log('clientLeft clientTop: ');
+      // console.log(document.getElementsByClassName('box1')[0])
+
+      console.log('scrollWidth scrollHeight scrollTop:');
+      console.log(document.getElementsByClassName('box7')[0].scrollWidth); //200
+      console.log(document.getElementsByClassName('box7')[0].scrollHeight); //200
+      function scrollFunc(eve){
+        console.log(eve.scrollTop);
+      }
+    </script>
+  </body>
+</html>

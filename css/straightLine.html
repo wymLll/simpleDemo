@@ -1,0 +1,74 @@
+<!-- <!DOCType html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <style>
+        .hr {
+            width: 300px;
+            background-color: #000;
+        }
+        .hr.half-px {
+            height: 0.5px;
+        }
+        .hr.one-px {
+           height: 1px;
+        }
+        .hr.scale-half{
+            height: 1px;
+            transform: scaleY(0.5);
+            /* transform-origin: 50% 100%; */
+        }
+    </style>
+</head>
+<body>
+    <p>0.5px</p>
+    <div class="hr half-px"></div>
+    <p>1px</p>
+    <div class="hr one-px"></div>
+    <br>
+
+    <p>1px + scaleY(0.5)</p>
+    <div class="hr scale-half"></div>
+
+    <h2>总结</h2>
+    <p>
+        chrome会将0.5px四舍五入为1px；小于0.5px的当成0
+        ff能画半个像素的边，Firefox会把不小于0.55px当成1px
+        safari能画半个像素的边，Safari是把不小于0.75px当成1px
+    </p>
+</body>
+</html> -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0 maximum-scal=1.0, user-scalable=no">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+            .hr {
+                width: 300px;
+                background-color: #000;
+            }
+            .hr.half-px {
+                height: 0.5px;
+            }
+            .hr.one-px {
+               height: 1px;
+            }
+            .hr.scale-half{
+                height: 1px;
+                transform: scaleY(0.5);
+                /* transform-origin: 50% 100%; */
+            }
+        </style>
+</head>
+<body>
+        <p>0.5px</p>
+        <div class="hr half-px"></div>
+        <p>1px</p>
+        <div class="hr one-px"></div>
+        <br>
+</body>
+</html>

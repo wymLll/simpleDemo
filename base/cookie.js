@@ -10,7 +10,7 @@
     var date = new Date();
     date.setDate(date.getDate() + expireDays);
     var expires = 'expires=' + date.toUTCString(); //根据世界时 (UTC) 把 Date 对象转换为字符串
-    document.cookie = cname + '=' + escape(cvalue) + ';' + expires;
+    document.cookie = cname + '=' + escape(cvalue) + ';' + expires; //需要对cookie值编码
   }
   /**
    * 读cookie

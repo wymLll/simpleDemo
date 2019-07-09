@@ -8,6 +8,7 @@
   height: 100px;
 }
 
+/* 两栏布局 */
 .fm2 .left {
   float: left;
   width: 200px;
@@ -28,6 +29,7 @@
   margin-left: 210px;
 }
 
+/* 三栏布局 */
 .fm3 .left {
   float: left;
   width: 200px;

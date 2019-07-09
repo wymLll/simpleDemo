@@ -32,6 +32,7 @@ function sayWow(){
 }
 
 
+//標准的new方法
 var Jone = new sayHi('Jone');
 console.log(Jone);  //{}
 var Celi = new sayHello('Celi');
@@ -39,6 +40,7 @@ console.log(Celi);  //sayHello { name: 'Celi' }
 var wow = new sayWow();
 console.log(wow);   //sayWow {}
 
+//實現的new方法
 var newSayHi = New(sayHi, 'jone');
 console.log(newSayHi);  //{}
 var newSayHello = New(sayHello, 'celi');
